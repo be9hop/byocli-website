@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://byocli.pages.dev/sitemap.xml

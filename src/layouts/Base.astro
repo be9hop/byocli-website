@@ -6,14 +6,40 @@ interface Props {
   description?: string;
 }
 
+// SEO-optimized defaults. The title leads with the brand + the keyword phrase
+// people actually search ("AI coding agent workspace") rather than just the
+// tagline. Description stays under 160 chars for clean SERP display.
 const {
-  title = "BYOCLI — Bring Your Own CLI",
-  description = "A CLI-agnostic desktop coding workspace. Run any AI coding agent alongside a live browser and visual DOM annotations. Built with Tauri 2."
+  title = "BYOCLI — AI Coding Agent Workspace for Any CLI",
+  description = "Run any AI coding agent — Claude Code, Codex, Gemini, Aider — in one focused desktop workspace. Live browser preview, visual annotations, and scheduled automations."
 } = Astro.props;
+
+// Absolute site URL — social scrapers (OG, Twitter) require absolute image URLs.
+const SITE_URL = "https://byocli.pages.dev";
+const OG_IMAGE = `${SITE_URL}/BYOCLI-Screenshot.png`;
 
 // Canonical GitHub repo URL — single source of truth for the site.
 export const GITHUB_URL = "https://github.com/be9hop/byocli";
 export const RELEASES_URL = "https://github.com/be9hop/byocli/releases";
+
+// JSON-LD structured data: SoftwareApplication schema for rich search results.
+// Helps Google render a richer result (app name, OS, license, category).
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "BYOCLI",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Windows",
+  description,
+  url: SITE_URL,
+  downloadUrl: RELEASES_URL,
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD"
+  },
+  license: "https://www.gnu.org/licenses/gpl-3.0.html"
+};
 ---
 
 <!doctype html>
@@ -21,15 +47,34 @@ export const RELEASES_URL = "https://github.com/be9hop/byocli/releases";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary meta -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="BYOCLI" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={SITE_URL} />
 
-    <!-- Open Graph / social -->
+    <!-- Open Graph (Facebook, LinkedIn, Slack, etc.) -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BYOCLI" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/byocli-app-icon.png" />
+    <meta property="og:url" content={SITE_URL} />
+    <meta property="og:image" content={OG_IMAGE} />
+    <meta property="og:image:alt" content="BYOCLI workspace showing sidebar, terminal, browser split, and file tree" />
+    <meta property="og:image:width" content="1917" />
+    <meta property="og:image:height" content="1079" />
+
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={OG_IMAGE} />
+    <meta name="twitter:image:alt" content="BYOCLI workspace showing sidebar, terminal, browser split, and file tree" />
+
+    <!-- Structured data for rich search results -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
     <!-- Icons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
