@@ -1,0 +1,53 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "BYOCLI — Bring Your Own CLI",
+  description = "A CLI-agnostic desktop coding workspace. Run any AI coding agent alongside a live browser and visual DOM annotations. Built with Tauri 2."
+} = Astro.props;
+
+// Canonical GitHub repo URL — single source of truth for the site.
+export const GITHUB_URL = "https://github.com/be9hop/byocli";
+export const RELEASES_URL = "https://github.com/be9hop/byocli/releases";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/byocli-app-icon.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/byocli-app-icon.png" />
+
+    <!-- Fonts: DM Sans + IBM Plex Mono (matches the app) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Theme color matches the dark ink -->
+    <meta name="theme-color" content="#000308" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

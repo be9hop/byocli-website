@@ -1,0 +1,94 @@
+---
+const steps = [
+  {
+    n: "01",
+    title: "Pick a CLI",
+    body: "Choose a profile — Claude Code, Codex, Gemini, Aider, or your own command. BYOCLI launches it in a real PTY with native session restore.",
+    code: `> claude\n✓ Restored session · 3 files in context`
+  },
+  {
+    n: "02",
+    title: "Open a workspace",
+    body: "BYOCLI scopes every terminal, browser tab, and automation to the folder you pick. Switch projects instantly; state persists in SQLite.",
+    code: `workspaces/\n  ├── byocli-app      (active)\n  └── personal-site`
+  },
+  {
+    n: "03",
+    title: "Point at what to fix",
+    body: "Click Annotate in the browser split, highlight the element, describe the change. BYOCLI sends a structured instruction to your agent — no more screenshots.",
+    code: `1. Increase this heading's size\n   CSS: main > h1.hero-title\n   XPath: /html/body/main/h1[1]`
+  }
+];
+---
+
+<section class="section how" id="how-it-works">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 8px;">
+      <span class="eyebrow">How it works</span>
+    </div>
+    <h2 class="section-title text-center">From clone to fix in three steps</h2>
+
+    <ol class="steps">
+      {steps.map((s) => (
+        <li class="step">
+          <div class="step-num text-mint text-mono">{s.n}</div>
+          <div class="step-content">
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+            <pre class="step-code"><code>{s.code}</code></pre>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .steps {
+    list-style: none;
+    margin-top: 56px;
+    display: grid;
+    gap: 36px;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .step-num {
+    font-size: 22px;
+    font-weight: 500;
+    padding-top: 4px;
+  }
+  .step-content h3 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .step-content p {
+    color: var(--text-muted);
+    font-size: 15.5px;
+    max-width: 640px;
+    margin-bottom: 16px;
+  }
+  .step-code {
+    background: var(--ink-panel);
+    border: 1px solid var(--ink-line);
+    border-radius: 10px;
+    padding: 16px 18px;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    max-width: 680px;
+    white-space: pre-wrap;
+  }
+  .step-code code { color: var(--text-muted); }
+  @media (max-width: 640px) {
+    .step { grid-template-columns: 1fr; gap: 8px; }
+    .step-num { padding-top: 0; }
+  }
+</style>

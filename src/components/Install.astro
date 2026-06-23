@@ -1,0 +1,115 @@
+---
+import { RELEASES_URL, GITHUB_URL } from "../layouts/Base.astro";
+---
+
+<section class="section install" id="install">
+  <div class="container">
+    <div class="install-card">
+      <span class="eyebrow">Install</span>
+      <h2 class="section-title">Get BYOCLI</h2>
+      <p class="section-lede">
+        Grab the latest Windows installer, or build from source on any platform.
+        Tauri 2 supports Windows, macOS, and Linux.
+      </p>
+
+      <div class="install-grid">
+        <div class="install-option">
+          <div class="install-head">
+            <span class="os-badge">Windows</span>
+            <span class="install-pill">Recommended</span>
+          </div>
+          <p>Download the NSIS installer and run it. Installs to your user profile — no admin required.</p>
+          <a class="btn btn-primary" href={RELEASES_URL} target="_blank" rel="noopener">
+            Download latest release
+          </a>
+        </div>
+
+        <div class="install-option">
+          <div class="install-head">
+            <span class="os-badge os-other">From source</span>
+          </div>
+          <p>Clone the repo and build for Windows, macOS, or Linux.</p>
+          <pre class="install-cmd"><code>git clone {GITHUB_URL.replace("https://", "")}
+cd byocli
+npm install
+npm run tauri dev</code></pre>
+        </div>
+      </div>
+
+      <p class="install-note">
+        Pre-built macOS and Linux binaries are on the roadmap.
+        See the <a href={`${GITHUB_URL}#-build-from-source`}>build guide</a> for platform prerequisites.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .install-card {
+    background: var(--ink-panel);
+    border: 1px solid var(--ink-line);
+    border-radius: 16px;
+    padding: 48px;
+  }
+  .install-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 36px;
+  }
+  .install-option {
+    padding: 28px;
+    background: var(--ink);
+    border: 1px solid var(--ink-line);
+    border-radius: 12px;
+  }
+  .install-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .os-badge {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--mint);
+    padding: 4px 10px;
+    border: 1px solid var(--mint);
+    border-radius: 999px;
+    background: var(--mint-soft);
+  }
+  .os-other { color: var(--text-muted); border-color: var(--ink-line); background: transparent; }
+  .install-pill {
+    font-size: 11px;
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+  }
+  .install-option p {
+    color: var(--text-muted);
+    font-size: 14.5px;
+    margin-bottom: 20px;
+    min-height: 44px;
+  }
+  .install-cmd {
+    background: #02050a;
+    border: 1px solid var(--ink-line);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: var(--text-muted);
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .install-cmd code { color: #b8c4c0; }
+  .install-note {
+    margin-top: 28px;
+    font-size: 13.5px;
+    color: var(--text-faint);
+  }
+  @media (max-width: 760px) {
+    .install-card { padding: 32px 24px; }
+    .install-grid { grid-template-columns: 1fr; }
+  }
+</style>

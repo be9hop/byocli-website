@@ -1,0 +1,228 @@
+/* ==========================================================================
+   BYOCLI design tokens — mirrors the app's visual identity
+   (src/styles.css in the byocli repo) so the site feels like an extension
+   of the product, not a separate brand.
+   ========================================================================== */
+
+:root {
+  /* Core palette */
+  --ink: #000308;            /* near-black background */
+  --ink-deep: #101719;       /* slightly raised panels */
+  --ink-panel: #06090c;      /* card / surface */
+  --ink-line: #1a2026;       /* hairline borders */
+
+  /* Accent — the BYOCLI mint/teal */
+  --mint: #17f5c1;
+  --mint-soft: rgba(23, 245, 193, 0.12);
+  --mint-glow: rgba(23, 245, 193, 0.35);
+
+  /* Text */
+  --text: #f4f7f6;
+  --text-muted: #9aa5a2;
+  --text-faint: #626c69;
+
+  /* Type */
+  --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Berkeley Mono", "IBM Plex Mono", "Cascadia Code", "SF Mono", Consolas, monospace;
+
+  /* Layout */
+  --max-width: 1120px;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+/* ----------------------------------------------------------------- reset */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--ink);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Subtle ambient mint glow on the page background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, var(--mint-soft), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 100% 100%, var(--mint-soft), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+a {
+  color: var(--mint);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+a:hover {
+  color: #5ffad3;
+}
+
+code, pre, kbd {
+  font-family: var(--font-mono);
+}
+
+::selection {
+  background: var(--mint-glow);
+  color: var(--ink);
+}
+
+/* --------------------------------------------------------------- layout */
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 96px 0;
+  position: relative;
+}
+
+@media (max-width: 720px) {
+  .section { padding: 64px 0; }
+  .container { padding: 0 20px; }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mint);
+  padding: 6px 12px;
+  border: 1px solid var(--ink-line);
+  border-radius: 999px;
+  background: rgba(23, 245, 193, 0.04);
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  margin: 20px 0 16px;
+}
+
+.section-lede {
+  font-size: 18px;
+  color: var(--text-muted);
+  max-width: 620px;
+}
+
+/* --------------------------------------------------------------- buttons */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease;
+  text-decoration: none;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.btn-primary {
+  background: var(--mint);
+  color: var(--ink);
+  box-shadow: 0 0 0 0 var(--mint-glow);
+}
+.btn-primary:hover {
+  color: var(--ink);
+  box-shadow: 0 8px 32px -8px var(--mint-glow);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--ink-line);
+}
+.btn-secondary:hover {
+  border-color: var(--mint);
+  color: var(--text);
+}
+
+/* ---------------------------------------------------------------- cards */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 48px;
+}
+
+.card {
+  padding: 28px;
+  background: var(--ink-panel);
+  border: 1px solid var(--ink-line);
+  border-radius: var(--radius);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.card:hover {
+  border-color: rgba(23, 245, 193, 0.3);
+  transform: translateY(-2px);
+}
+
+.card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--mint-soft);
+  color: var(--mint);
+  margin-bottom: 16px;
+}
+.card-icon svg { width: 20px; height: 20px; }
+
+.card h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.card p {
+  font-size: 14.5px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* ----------------------------------------------------------------- utils */
+
+.text-mono { font-family: var(--font-mono); }
+.text-mint { color: var(--mint); }
+.text-center { text-align: center; }

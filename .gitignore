@@ -1,0 +1,22 @@
+# build output
+dist/
+
+# dependencies (not used by Astro's static build, but kept for parity)
+node_modules/
+
+# Astro
+.astro/
+
+# env / secrets
+.env
+.env.*
+
+# logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
