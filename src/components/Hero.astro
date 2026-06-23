@@ -5,9 +5,6 @@ import { GITHUB_URL, RELEASES_URL } from "../layouts/Base.astro";
 <section class="hero">
   <div class="container">
     <div class="hero-copy">
-      <span class="eyebrow">
-        <span class="pulse-dot"></span> Open source · GPL-3.0
-      </span>
       <h1>
         Bring <span class="text-mint">your own CLI</span><br />
         to a focused coding workspace.
@@ -32,17 +29,18 @@ import { GITHUB_URL, RELEASES_URL } from "../layouts/Base.astro";
       </div>
       <p class="hero-fine">macOS &amp; Linux builds coming soon · v0.1.12</p>
     </div>
+  </div>
 
-    <!-- Large screenshot below the centered headline. -->
-    <div class="hero-shot">
-      <img
-        src="/BYOCLI-Screenshot.png"
-        alt="BYOCLI workspace showing sidebar, terminal, browser split, and file tree"
-        width="1920"
-        height="1200"
-        loading="eager"
-      />
-    </div>
+  <!-- Large screenshot below the centered headline. Outside the container so it
+       can exceed the 1120px content width for a more immersive "see the app". -->
+  <div class="hero-shot">
+    <img
+      src="/BYOCLI-Screenshot.png"
+      alt="BYOCLI workspace showing sidebar, terminal, browser split, and file tree"
+      width="1920"
+      height="1200"
+      loading="eager"
+    />
   </div>
 </section>
 
@@ -58,11 +56,11 @@ import { GITHUB_URL, RELEASES_URL } from "../layouts/Base.astro";
     margin: 0 auto;
   }
   h1 {
-    font-size: clamp(34px, 5vw, 56px);
-    line-height: 1.08;
+    font-size: clamp(40px, 6.5vw, 72px);
+    line-height: 1.05;
     letter-spacing: -0.03em;
     font-weight: 700;
-    margin: 24px 0 20px;
+    margin: 0 0 22px;
   }
   .hero-lede {
     font-size: 19px;
@@ -97,8 +95,11 @@ import { GITHUB_URL, RELEASES_URL } from "../layouts/Base.astro";
   }
 
   /* ----- large screenshot below the headline ----- */
+  /* Breaks out beyond the 1120px container to ~1280px for a more immersive,
+     "see the whole app" presentation. */
   .hero-shot {
-    margin-top: 56px;
+    margin: 56px auto 0;
+    max-width: 1280px;
     border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 40px 90px -30px rgba(0,0,0,0.75), 0 0 0 1px rgba(23,245,193,0.06);

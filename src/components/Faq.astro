@@ -1,0 +1,106 @@
+---
+const faqs = [
+  {
+    q: "Is BYOCLI free?",
+    a: "Yes. BYOCLI is free and open source under the GPL-3.0 license. You can use it, modify it, and distribute it — and anything you build on top must also stay open source."
+  },
+  {
+    q: "Which AI coding agents does it support?",
+    a: "Any command-line tool. BYOCLI ships sensible defaults for Claude Code, Codex, Gemini CLI, Aider, Goose, Oh My Pi, and OpenCode, and you can add your own profile for anything else. If it runs in a terminal, it runs in BYOCLI."
+  },
+  {
+    q: "How is this different from a regular terminal?",
+    a: "BYOCLI pairs your terminals with a live browser view and a file tree in the same window. You can visually point at an element on a page — BYOCLI captures its CSS selector, XPath, and surrounding context — and paste that structured instruction straight into your agent session. No more screenshots."
+  },
+  {
+    q: "Does my code leave my machine?",
+    a: "No. BYOCLI is a desktop app that runs locally. Your terminals, files, and the browser view all stay on your machine. The agents you run (Claude Code, Codex, etc.) behave exactly as they would in any other terminal — BYOCLI doesn't intercept or relay their traffic."
+  },
+  {
+    q: "What platforms does it run on?",
+    a: "Windows today, with a polished NSIS installer. macOS and Linux are supported by the underlying Tauri framework and are on the roadmap — you can also build from source on those platforms now."
+  },
+  {
+    q: "Can I schedule commands to run automatically?",
+    a: "Yes. BYOCLI has a built-in automation scheduler supporting interval, daily, weekly, and cron schedules. Automations run in a workspace or a file-free temp sandbox, with overlap policies, timeouts, retries, and full output capture in the run history."
+  },
+  {
+    q: "Where does my workspace state get saved?",
+    a: "Locally, in a SQLite database inside your OS app-data directory. BYOCLI persists your workspaces, sessions, automation history, and settings. Nothing is sent to a server."
+  }
+];
+---
+
+<section class="section faq" id="faq">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 8px;">
+      <span class="eyebrow">FAQ</span>
+    </div>
+    <h2 class="section-title text-center">Frequently asked questions</h2>
+
+    <div class="faq-list">
+      {faqs.map((item) => (
+        <details class="faq-item">
+          <summary>
+            <span>{item.q}</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="faq-answer"><p>{item.a}</p></div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-list {
+    max-width: 760px;
+    margin: 48px auto 0;
+    display: grid;
+    gap: 12px;
+  }
+  .faq-item {
+    background: var(--ink-panel);
+    border: 1px solid var(--ink-line);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+  .faq-item[open] {
+    border-color: rgba(23, 245, 193, 0.3);
+  }
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 22px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary:hover { color: var(--mint); }
+  .faq-chevron {
+    flex-shrink: 0;
+    color: var(--text-faint);
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+    color: var(--mint);
+  }
+  .faq-answer {
+    padding: 0 22px 20px;
+  }
+  .faq-answer p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+  }
+</style>
