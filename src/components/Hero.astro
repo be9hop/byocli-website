@@ -3,7 +3,7 @@ import { GITHUB_URL, RELEASES_URL } from "../layouts/Base.astro";
 ---
 
 <section class="hero">
-  <div class="container hero-inner">
+  <div class="container">
     <div class="hero-copy">
       <span class="eyebrow">
         <span class="pulse-dot"></span> Open source · GPL-3.0
@@ -30,16 +30,16 @@ import { GITHUB_URL, RELEASES_URL } from "../layouts/Base.astro";
           View on GitHub →
         </a>
       </div>
-      <p class="hero-fine">macOS &amp; Linux builds coming soon · v0.1.3</p>
+      <p class="hero-fine">macOS &amp; Linux builds coming soon · v0.1.12</p>
     </div>
 
-    <!-- The real app screenshot replaces the earlier CSS mockup. -->
-    <div class="hero-mockup">
+    <!-- Large screenshot below the centered headline. -->
+    <div class="hero-shot">
       <img
         src="/BYOCLI-Screenshot.png"
         alt="BYOCLI workspace showing sidebar, terminal, browser split, and file tree"
-        width="1080"
-        height="675"
+        width="1920"
+        height="1200"
         loading="eager"
       />
     </div>
@@ -48,17 +48,17 @@ import { GITHUB_URL, RELEASES_URL } from "../layouts/Base.astro";
 
 <style>
   .hero {
-    padding: 80px 0 64px;
+    padding: 64px 0 48px;
     position: relative;
   }
-  .hero-inner {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 56px;
-    align-items: center;
+  /* Centered single-column layout: headline on top, screenshot below. */
+  .hero-copy {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto;
   }
   h1 {
-    font-size: clamp(36px, 5vw, 56px);
+    font-size: clamp(34px, 5vw, 56px);
     line-height: 1.08;
     letter-spacing: -0.03em;
     font-weight: 700;
@@ -67,13 +67,14 @@ import { GITHUB_URL, RELEASES_URL } from "../layouts/Base.astro";
   .hero-lede {
     font-size: 19px;
     color: var(--text-muted);
-    max-width: 520px;
-    margin-bottom: 32px;
+    max-width: 560px;
+    margin: 0 auto 32px;
   }
   .hero-ctas {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
+    justify-content: center;
   }
   .hero-fine {
     margin-top: 16px;
@@ -95,21 +96,17 @@ import { GITHUB_URL, RELEASES_URL } from "../layouts/Base.astro";
     100% { box-shadow: 0 0 0 0 transparent; }
   }
 
-  /* ----- hero screenshot ----- */
-  .hero-mockup {
-    border-radius: 12px;
+  /* ----- large screenshot below the headline ----- */
+  .hero-shot {
+    margin-top: 56px;
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 40px 80px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(23,245,193,0.06);
+    box-shadow: 0 40px 90px -30px rgba(0,0,0,0.75), 0 0 0 1px rgba(23,245,193,0.06);
   }
-  .hero-mockup img {
+  .hero-shot img {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 12px;
-  }
-
-  @media (max-width: 920px) {
-    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-    .hero-mockup { order: -1; }
   }
 </style>
+

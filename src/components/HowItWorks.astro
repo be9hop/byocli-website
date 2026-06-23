@@ -46,7 +46,11 @@ const steps = [
 <style>
   .steps {
     list-style: none;
-    margin-top: 56px;
+    margin: 56px auto 0;
+    /* Constrain + center the whole list so the steps sit in the middle of the
+       page rather than flush-left. Each step keeps its internal left-alignment,
+       which reads better for the code samples. */
+    max-width: 640px;
     display: grid;
     gap: 36px;
   }
